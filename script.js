@@ -303,5 +303,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
     console.log('🏥 Kayden Clinic - Website Loaded Successfully');
 });
+
+// ============================================
+// CONTACT FORM EMAIL HANDLER
+// ============================================
+function sendEmail(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent(`Contact Form: Message from ${name}`);
+    const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone}\n\n` +
+        `Message:\n${message}\n\n` +
+        `---\n` +
+        `Sent from Kayden Medical Centre website contact form`
+    );
+
+    const mailtoLink = `mailto:auspicioussagacity@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    // Reset form after a short delay
+    setTimeout(() => {
+        document.getElementById('contactForm').reset();
+    }, 500);
+
+    return false;
+}
