@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayden Clinic | 24/7 Emergency Care in Harare</title>
+    <meta name="description"
+        content="Expert medical care any hour. 24/7 Emergency services, X-rays & Scans, and Full-Service Pharmacy at 3A Mupani Road, Old Marimba, Harare.">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo-wrapper" style="display: flex; align-items: center; gap: 15px;">
+                    <img src="images/logo-official.png" alt="Kayden Medical Centre Logo"
+                        style="height: 55px; width: auto; object-fit: contain;">
+                </div>
+            </div>
+
+            <nav class="nav-desktop">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="tel:+263712469830" class="btn-primary">Call Now</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile" id="mobileNav">
+            <a href="#about" class="nav-link-mobile">About</a>
+            <a href="#services" class="nav-link-mobile">Services</a>
+            <a href="#contact" class="nav-link-mobile">Contact</a>
+            <a href="tel:+263712469830" class="nav-link-mobile">Call Now</a>
+        </nav>
+    </header>
+
+    <!-- Full-Screen Hero Image Section -->
+    <section class="slideshow-section" id="hero">
+        <div class="slideshow-container">
+            <div class="slideshow-wrapper">
+                <!-- Main Hero Image -->
+                <div class="slideshow-slide active">
+                    <img src="images/Kayden.jpeg" alt="Kayden Clinic - Your Trusted Healthcare Provider">
+                    <div class="slideshow-overlay">
+                        <h1 class="slideshow-welcome">Welcome to Kayden Clinic</h1>
+                        <p class="slideshow-caption">
+                            Your health is our priority. Expert medical care available 24/7
+                        </p>
+                        <div class="slideshow-cta">
+                            <a href="tel:+263712469830" class="btn-primary btn-large">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                                        fill="currentColor" />
+                                </svg>
+                                Call Emergency: +263 71 246 9830
+                            </a>
+                            <a href="https://maps.google.com/?q=3A+Mupani+Road,+Old+Marimba,+Harare" target="_blank"
+                                rel="noopener" class="btn-secondary btn-large">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                        fill="currentColor" />
+                                </svg>
+                                Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Vision Image -->
+    <section class="hero" id="about" style="padding: var(--space-10) 0;">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                            fill="currentColor" />
+                    </svg>
+                    <span>24/7 EMERGENCY CARE</span>
+                </div>
+                <h2 class="hero-headline">
+                    Immediate Care.<br>
+                    Advanced Diagnostics.
+                </h2>
+                <p class="hero-subheadline">
+                    Kayden Clinic provides round-the-clock emergency medical services, professional diagnostic imaging,
+                    and a fully-stocked pharmacy. Our experienced medical team is dedicated to delivering compassionate,
+                    high-quality healthcare when you need it most.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary btn-large">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12c0 1.54.35 3 .97 4.3L2 22l5.9-.97C9.14 21.64 10.54 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
+                                fill="currentColor" />
+                        </svg>
+                        Chat on WhatsApp
+                    </a>
+                    <a href="#services" class="btn-secondary btn-large">
+                        View Our Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clinic Gallery Slideshow -->
+            <div class="hero-image">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/Vision.jpeg" alt="Our Vision - Quality Healthcare">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/pharmacy1.jpeg" alt="Pharmacy Interior">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/xRay.jpeg" alt="X-Ray Diagnostic Center">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Kayden.jpg" alt="Kayden Clinic Building">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Expert Care, Any Hour</h2>
+                <p class="section-subtitle">Comprehensive medical services available 24/7</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- X-Ray & Scans -->
+                <div class="service-card">
+                    <div class="service-image-container">
+                        <img src="images/xRay.jpeg" alt="X-Ray Services">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="12" width="24" height="8" rx="4" stroke="currentColor"
+                                    stroke-width="2" />
+                                <rect x="16" y="22" width="32" height="20" rx="2" stroke="currentColor"
+                                    stroke-width="2" />
+                                <line x1="24" y1="26" x2="24" y2="38" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="32" y1="26" x2="32" y2="38" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="40" y1="26" x2="40" y2="38" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <rect x="20" y="44" width="24" height="8" rx="4" stroke="currentColor"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">X-Ray & Scans</h3>
+                        <p class="service-description">Advanced diagnostic imaging with state-of-the-art equipment for
+                            accurate and rapid results.</p>
+                        <ul class="service-features">
+                            <li>Digital X-Ray Technology</li>
+                            <li>Same-Day Results</li>
+                            <li>Professional Radiologists</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 24/7 Emergency -->
+                <div class="service-card service-card-featured">
+                    <div class="featured-badge">Always Open</div>
+                    <div class="service-image-container">
+                        <img src="images/Services.jpeg" alt="Emergency Services">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" />
+                                <path d="M32 16v16l11.31 6.74" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <circle cx="32" cy="32" r="2" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">24/7 Emergency</h3>
+                        <p class="service-description">Round-the-clock emergency care with experienced medical
+                            professionals ready to assist you.</p>
+                        <ul class="service-features">
+                            <li>Immediate Medical Attention</li>
+                            <li>Expert Emergency Team</li>
+                            <li>No Appointment Needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Full-Service Pharmacy -->
+                <div class="service-card">
+                    <div class="service-image-container">
+                        <img src="images/Pharmacy.jpeg" alt="Pharmacy Services">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="24" width="24" height="28" rx="2" stroke="currentColor"
+                                    stroke-width="2" />
+                                <path d="M32 16v32M16 32h32" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                                <circle cx="28" cy="42" r="2" fill="currentColor" />
+                                <circle cx="36" cy="42" r="2" fill="currentColor" />
+                                <circle cx="28" cy="48" r="2" fill="currentColor" />
+                                <circle cx="36" cy="48" r="2" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Full-Service Pharmacy</h3>
+                        <p class="service-description">On-site pharmacy stocked with essential medications and health
+                            products for your convenience.</p>
+                        <ul class="service-features">
+                            <li>Wide Range of Medications</li>
+                            <li>Professional Pharmacists</li>
+                            <li>Prescription Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- General Practice -->
+                <div class="service-card">
+                    <div class="service-image-container">
+                        <img src="images/xRay.jpeg" alt="General Practice">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 16v32M16 32h32" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                                <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3 class="service-title">General Practice</h3>
+                        <p class="service-description">Comprehensive primary healthcare services for all your medical
+                            needs and concerns.</p>
+                        <ul class="service-features">
+                            <li>Routine Check-ups</li>
+                            <li>Chronic Disease Management</li>
+                            <li>Preventive Care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-info">
+                    <h2 class="section-title">Visit Us</h2>
+                    <p class="section-subtitle">We're here for you, anytime you need us</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>3A Mupani Road<br>Old Marimba, Harare</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:+263712469830">+263 71 246 9830</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Hours</h4>
+                                <p class="hours-highlight">Open 24/7<br>Every Day of the Year</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="https://maps.google.com/?q=3A+Mupani+Road,+Old+Marimba,+Harare" target="_blank"
+                            rel="noopener" class="btn-primary">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                    fill="currentColor" />
+                            </svg>
+                            Open in Maps
+                        </a>
+                        <a href="tel:+263712469830" class="btn-secondary">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                                    fill="currentColor" />
+                            </svg>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.0123456789!2d30.9876543!3d-17.8543210!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDUxJzE1LjYiUyAzMMKwNTknMTUuNiJF!5e0!3m2!1sen!2szw!4v1234567890123!5m2!1sen!2szw&q=3A+Mupani+Road,+Old+Marimba,+Harare"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="Kayden Clinic Location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">We're here to help - reach out anytime</p>
+            </div>
+
+            <div class="contacts-grid">
+                <!-- Emergency Contact -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3>24/7 Emergency</h3>
+                    <p style="font-weight: 600; font-size: 20px; color: var(--color-primary);">+263 71 246 9830</p>
+                    <p>Immediate medical assistance available around the clock</p>
+                    <a href="tel:+263712469830" class="btn-primary">Call Emergency</a>
+                </div>
+
+                <!-- General Inquiries -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3>General Inquiries</h3>
+                    <p style="font-weight: 600; font-size: 20px; color: var(--color-primary);">+263 71 246 9830</p>
+                    <p>Questions about our services, hours, or how we can help</p>
+                    <a href="tel:+263712469830" class="btn-primary">Call Now</a>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12c0 1.54.35 3 .97 4.3L2 22l5.9-.97C9.14 21.64 10.54 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.54 0-3-.35-4.3-.97L7 19l-.97.64C5.35 19 5 18.54 5 18c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"
+                                fill="currentColor" />
+                            <path
+                                d="M16.2 13.9c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.6.8-.1.1-.2.2-.4.1s-.8-.3-1.5-1c-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.4.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3 0-.1-.4-1.1-.6-1.5-.2-.4-.3-.3-.5-.3h-.3c-.1 0-.3 0-.5.2-.2.2-.6.6-.6 1.5s.6 1.7.7 1.8c.1.1 1.3 2 3.1 2.8 1.8.8 1.8.5 2.1.5.3 0 1.1-.4 1.2-.9.1-.4.1-.8.1-.9 0-.1-.1-.1-.3-.2z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p style="font-weight: 600; font-size: 20px; color: var(--color-primary);">+263 71 246 9830</p>
+                    <p>Chat with us instantly on WhatsApp for quick responses</p>
+                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary">Chat on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+263 XX XXX XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-large" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo" style="margin-bottom: var(--space-4);">
+                <img src="images/logo-official.png" alt="Kayden Medical Centre Logo"
+                    style="height: 100px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
+            </div>
+            <p class="footer-tagline">Always Open. Always Here for You.</p>
+            <p class="footer-copyright">&copy; 2026 Kayden Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/263712469830" class="whatsapp-float" target="_blank" rel="noopener"
+        aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M16 0C7.164 0 0 7.164 0 16c0 2.828.738 5.582 2.144 7.992L.098 31.195l7.482-1.964A15.903 15.903 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.516 0-4.98-.708-7.104-2.048l-.512-.308-5.308 1.392 1.42-5.168-.336-.532A13.253 13.253 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"
+                fill="currentColor" />
+            <path
+                d="M23.164 19.276c-.384-.192-2.272-1.12-2.624-1.248-.352-.132-.608-.192-.864.192-.256.38-.992 1.248-1.216 1.504-.224.252-.448.284-.832.092-.384-.196-1.62-.596-3.084-1.9-1.14-.98-1.908-2.192-2.132-2.576-.224-.38-.024-.588.168-.78.172-.172.384-.448.576-.672.192-.224.256-.38.384-.636.128-.252.064-.476-.032-.668-.096-.192-.864-2.08-1.184-2.848-.312-.748-.628-.648-.864-.66-.224-.012-.48-.012-.736-.012s-.672.096-.992.476c-.32.384-1.216 1.184-1.216 2.888 0 1.704 1.248 3.352 1.42 3.58.176.224 2.46 3.756 5.96 5.268.832.36 1.484.576 1.992.736.836.268 1.596.228 2.196.14.672-.1 2.072-.848 2.364-1.664.292-.816.292-1.516.204-1.664-.088-.144-.344-.236-.728-.428z"
+                fill="currentColor" />
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
