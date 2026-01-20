@@ -1160,6 +1160,14 @@ body {
 .contact-card .btn-primary {
     margin-top: var(--space-3);
     width: 100%;
+    color: var(--color-white) !important;
+    background-color: var(--color-primary);
+}
+
+.contact-card .btn-primary:hover {
+    color: var(--color-white) !important;
+    background-color: var(--color-primary-dark);
+    text-decoration: none;
 }
 
 /* Contact Form */
