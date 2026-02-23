@@ -173,6 +173,44 @@ document.addEventListener('DOMContentLoaded', function () {
             item.style.transitionDelay = `${index * 80}ms`;
             observer.observe(item);
         });
+
+        // Observe value cards (Why Choose Us)
+        const valueCards = document.querySelectorAll('.value-card');
+        valueCards.forEach((card, index) => {
+            card.classList.add('reveal');
+            card.style.transitionDelay = `${index * 120}ms`;
+            observer.observe(card);
+        });
+
+        // Observe community tags
+        const communityTags = document.querySelectorAll('.community-tag');
+        communityTags.forEach((tag, index) => {
+            tag.classList.add('reveal');
+            tag.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(tag);
+        });
+
+        // Observe stat items
+        const statItems = document.querySelectorAll('.stat-item');
+        statItems.forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.transitionDelay = `${index * 150}ms`;
+            observer.observe(item);
+        });
+
+        // Observe story section
+        const storyContent = document.querySelector('.story-content');
+        if (storyContent) {
+            storyContent.classList.add('reveal');
+            observer.observe(storyContent);
+        }
+
+        const leaderCard = document.querySelector('.leader-card');
+        if (leaderCard) {
+            leaderCard.classList.add('reveal');
+            leaderCard.style.transitionDelay = '200ms';
+            observer.observe(leaderCard);
+        }
     }
 
     // ============================================
