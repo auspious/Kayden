@@ -8,34 +8,106 @@
     <meta name="description"
         content="Expert medical care any hour. 24/7 Emergency services, X-rays & Scans, and Full-Service Pharmacy at 3A Mupani Road, Old Marimba, Harare.">
 
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#2E3B7C">
+    <meta name="msapplication-navbutton-color" content="#2E3B7C">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kayden Clinic | 24/7 Emergency Care in Harare">
+    <meta property="og:description"
+        content="Expert medical care any hour. 24/7 Emergency services, X-rays & Scans, and Full-Service Pharmacy at 3A Mupani Road, Old Marimba, Harare.">
+    <meta property="og:image" content="images/Kayden.jpeg">
+    <meta property="og:url" content="https://kaydenclinic.co.zw">
+    <meta property="og:site_name" content="Kayden Clinic">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kayden Clinic | 24/7 Emergency Care">
+    <meta name="twitter:description"
+        content="Expert medical care any hour. 24/7 Emergency services, X-rays & Scans, and Full-Service Pharmacy.">
+    <meta name="twitter:image" content="images/Kayden.jpeg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo-official.png">
+    <link rel="apple-touch-icon" href="images/logo-official.png">
+
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="images/Kayden.jpeg">
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data - Medical Clinic (SEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Kayden Medical Centre",
+        "alternateName": "Kayden Clinic",
+        "description": "24/7 Emergency medical services, diagnostic imaging, and full-service pharmacy in Harare, Zimbabwe.",
+        "url": "https://kaydenclinic.co.zw",
+        "telephone": "+263712469830",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3A Mupani Road, Old Marimba",
+            "addressLocality": "Harare",
+            "addressCountry": "ZW"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "medicalSpecialty": ["Emergency Medicine", "Radiology", "Pharmacy"],
+        "availableService": [
+            { "@type": "MedicalProcedure", "name": "X-Ray & Diagnostic Imaging" },
+            { "@type": "MedicalProcedure", "name": "24/7 Emergency Care" },
+            { "@type": "MedicalProcedure", "name": "General Practice" }
+        ],
+        "image": "images/Kayden.jpeg",
+        "priceRange": "$$"
+    }
+    </script>
 </head>
 
 <body>
+    <!-- Skip to Content (Accessibility) -->
+    <a href="#about" class="skip-to-content">Skip to main content</a>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <span class="loader-text">Kayden Clinic</span>
+        </div>
+    </div>
+
     <!-- Sticky Header -->
-    <header class="header" id="header">
+    <header class="header" id="header" role="banner">
         <div class="container header-content">
             <div class="logo-container">
-                <div class="logo-wrapper" style="display: flex; align-items: center; gap: 15px;">
-                    <img src="images/logo-official.png" alt="Kayden Medical Centre Logo"
-                        style="height: 55px; width: auto; object-fit: contain;">
-                </div>
+                <a href="#hero" class="logo-wrapper" aria-label="Kayden Medical Centre - Go to homepage">
+                    <img src="images/logo-official.png" alt="Kayden Medical Centre Logo" width="180" height="55">
+                </a>
             </div>
 
-            <nav class="nav-desktop">
+            <nav class="nav-desktop" role="navigation" aria-label="Main navigation">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="tel:+263712469830" class="btn-primary">Call Now</a>
+                <a href="tel:+263712469830" class="btn-primary" id="nav-call-btn">Call Now</a>
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="mobileNav">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -43,28 +115,29 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <nav class="nav-mobile" id="mobileNav">
+        <nav class="nav-mobile" id="mobileNav" role="navigation" aria-label="Mobile navigation">
             <a href="#about" class="nav-link-mobile">About</a>
             <a href="#services" class="nav-link-mobile">Services</a>
             <a href="#contact" class="nav-link-mobile">Contact</a>
-            <a href="tel:+263712469830" class="nav-link-mobile">Call Now</a>
+            <a href="tel:+263712469830" class="nav-link-mobile">📞 Call Now</a>
         </nav>
     </header>
 
     <!-- Full-Screen Hero Image Section -->
-    <section class="slideshow-section" id="hero">
+    <section class="slideshow-section" id="hero" aria-label="Hero banner">
         <div class="slideshow-container">
             <div class="slideshow-wrapper">
                 <!-- Main Hero Image -->
                 <div class="slideshow-slide active">
-                    <img src="images/Kayden.jpeg" alt="Kayden Clinic - Your Trusted Healthcare Provider">
+                    <img src="images/Kayden.jpeg" alt="Kayden Clinic - Your Trusted Healthcare Provider" width="1920"
+                        height="1080">
                     <div class="slideshow-overlay">
                         <h1 class="slideshow-welcome">Welcome to Kayden Clinic</h1>
                         <p class="slideshow-caption">
                             Your health is our priority. Expert medical care available 24/7
                         </p>
                         <div class="slideshow-cta">
-                            <a href="tel:+263712469830" class="btn-primary btn-large">
+                            <a href="tel:+263712469830" class="btn-primary btn-large" id="hero-call-btn">
                                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -74,7 +147,7 @@
                                 Emergency Call
                             </a>
                             <a href="https://maps.google.com/?q=3A+Mupani+Road,+Old+Marimba,+Harare" target="_blank"
-                                rel="noopener" class="btn-secondary btn-large">
+                                rel="noopener" class="btn-secondary btn-large" id="hero-directions-btn">
                                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -91,7 +164,7 @@
     </section>
 
     <!-- About Section with Vision Image -->
-    <section class="hero" id="about" style="padding: var(--space-10) 0;">
+    <section class="hero" id="about" aria-label="About Kayden Clinic">
         <div class="container hero-content">
             <div class="hero-text">
                 <div class="hero-badge">
@@ -112,7 +185,8 @@
                     high-quality healthcare when you need it most.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary btn-large">
+                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary btn-large"
+                        id="about-whatsapp-btn">
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12 2C6.48 2 2 6.48 2 12c0 1.54.35 3 .97 4.3L2 22l5.9-.97C9.14 21.64 10.54 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
@@ -120,29 +194,34 @@
                         </svg>
                         Chat on WhatsApp
                     </a>
-                    <a href="#services" class="btn-secondary btn-large">
+                    <a href="#services" class="btn-secondary btn-large" id="about-services-btn">
                         View Our Services
                     </a>
                 </div>
             </div>
 
-            <!-- Clinic Gallery Slideshow -->
+            <!-- Clinic Gallery -->
             <div class="hero-image">
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/Vision.jpeg" alt="Our Vision - Quality Healthcare">
+                        <img src="images/Vision.jpeg" alt="Our Vision - Quality Healthcare" loading="lazy" width="600"
+                            height="400">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/pharmacy1.jpeg" alt="Pharmacy Interior">
+                        <img src="images/pharmacy1.jpeg" alt="Professional Pharmacy Interior" loading="lazy" width="300"
+                            height="200">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/xRay.jpeg" alt="X-Ray Diagnostic Center">
+                        <img src="images/xRay.jpeg" alt="X-Ray Diagnostic Center" loading="lazy" width="300"
+                            height="200">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/site.jpeg" alt="Kayden Clinic Building">
+                        <img src="images/site.jpeg" alt="Kayden Clinic Building Exterior" loading="lazy" width="300"
+                            height="200">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/topup.jpeg" alt="Kayden Clinic Building">
+                        <img src="images/topup.jpeg" alt="Clinic Reception Area" loading="lazy" width="300"
+                            height="200">
                     </div>
                 </div>
             </div>
@@ -150,7 +229,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="services" id="services" aria-label="Our Services">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Expert Care, Any Hour</h2>
@@ -159,9 +238,10 @@
 
             <div class="services-grid">
                 <!-- X-Ray & Scans -->
-                <div class="service-card">
+                <div class="service-card" id="service-xray">
                     <div class="service-image-container">
-                        <img src="images/poster.jpeg" alt="X-Ray Services">
+                        <img src="images/poster.jpeg" alt="Advanced X-Ray diagnostic equipment" loading="lazy"
+                            width="400" height="300">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
@@ -192,10 +272,11 @@
                 </div>
 
                 <!-- 24/7 Emergency -->
-                <div class="service-card service-card-featured">
+                <div class="service-card service-card-featured" id="service-emergency">
                     <div class="featured-badge">Always Open</div>
                     <div class="service-image-container">
-                        <img src="images/Services.jpeg" alt="Emergency Services">
+                        <img src="images/Services.jpeg" alt="Emergency services team ready to help" loading="lazy"
+                            width="400" height="300">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
@@ -218,9 +299,10 @@
                 </div>
 
                 <!-- Full-Service Pharmacy -->
-                <div class="service-card">
+                <div class="service-card" id="service-pharmacy">
                     <div class="service-image-container">
-                        <img src="images/Pharmacy.jpeg" alt="Pharmacy Services">
+                        <img src="images/Pharmacy.jpeg" alt="Fully-stocked pharmacy shelves" loading="lazy" width="400"
+                            height="300">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
@@ -247,9 +329,10 @@
                 </div>
 
                 <!-- General Practice -->
-                <div class="service-card">
+                <div class="service-card" id="service-general">
                     <div class="service-image-container">
-                        <img src="images/xRay.jpeg" alt="General Practice">
+                        <img src="images/xRay.jpeg" alt="General practice consultation room" loading="lazy" width="400"
+                            height="300">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
@@ -274,7 +357,7 @@
     </section>
 
     <!-- Location & Contact Section -->
-    <section class="location" id="location">
+    <section class="location" id="location" aria-label="Clinic Location">
         <div class="container">
             <div class="location-grid">
                 <div class="location-info">
@@ -327,7 +410,7 @@
 
                     <div class="cta-buttons">
                         <a href="https://maps.google.com/?q=3A+Mupani+Road,+Old+Marimba,+Harare" target="_blank"
-                            rel="noopener" class="btn-primary">
+                            rel="noopener" class="btn-primary" id="location-maps-btn">
                             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
@@ -335,7 +418,7 @@
                             </svg>
                             Open in Maps
                         </a>
-                        <a href="tel:+263712469830" class="btn-secondary">
+                        <a href="tel:+263712469830" class="btn-secondary" id="location-call-btn">
                             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
@@ -350,7 +433,7 @@
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.0123456789!2d30.9876543!3d-17.8543210!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDUxJzE1LjYiUyAzMMKwNTknMTUuNiJF!5e0!3m2!1sen!2szw!4v1234567890123!5m2!1sen!2szw&q=3A+Mupani+Road,+Old+Marimba,+Harare"
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" title="Kayden Clinic Location">
+                        referrerpolicy="no-referrer-when-downgrade" title="Kayden Clinic Location on Google Maps">
                     </iframe>
                 </div>
             </div>
@@ -358,16 +441,16 @@
     </section>
 
     <!-- Contacts Section -->
-    <section class="contacts-section" id="contact">
+    <section class="contacts-section" id="contact" aria-label="Contact Information">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">We're here to help - reach out anytime</p>
+                <p class="section-subtitle">We're here to help — reach out anytime</p>
             </div>
 
             <div class="contacts-grid">
                 <!-- Emergency Contact -->
-                <div class="contact-card">
+                <div class="contact-card" id="card-emergency">
                     <div class="contact-card-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -377,11 +460,11 @@
                     </div>
                     <h3>24/7 Emergency</h3>
                     <p>Immediate medical assistance available around the clock</p>
-                    <a href="tel:+263712469830" class="btn-primary">Call Emergency</a>
+                    <a href="tel:+263712469830" class="btn-primary" id="contact-emergency-btn">Call Emergency</a>
                 </div>
 
                 <!-- General Inquiries -->
-                <div class="contact-card">
+                <div class="contact-card" id="card-inquiries">
                     <div class="contact-card-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -391,11 +474,11 @@
                     </div>
                     <h3>General Inquiries</h3>
                     <p>Questions about our services, hours, or how we can help</p>
-                    <a href="tel:+263712469830" class="btn-primary">Call Now</a>
+                    <a href="tel:+263712469830" class="btn-primary" id="contact-call-btn">Call Now</a>
                 </div>
 
                 <!-- WhatsApp Contact -->
-                <div class="contact-card">
+                <div class="contact-card" id="card-whatsapp">
                     <div class="contact-card-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -408,28 +491,30 @@
                     </div>
                     <h3>WhatsApp</h3>
                     <p>Chat with us instantly on WhatsApp for quick responses</p>
-                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary">Chat on
-                        WhatsApp</a>
+                    <a href="https://wa.me/263712469830" target="_blank" rel="noopener" class="btn-primary"
+                        id="contact-whatsapp-btn">Chat on WhatsApp</a>
                 </div>
             </div>
 
             <!-- Contact Form -->
-            <div class="contact-form">
+            <div class="contact-form" id="contactFormContainer">
                 <h3>Send Us a Message</h3>
                 <form id="contactForm" onsubmit="return sendEmail(event)">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name"
+                            autocomplete="name">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com"
+                            autocomplete="email">
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+263 XX XXX XXXX">
+                        <input type="tel" id="phone" name="phone" placeholder="+263 XX XXX XXXX" autocomplete="tel">
                     </div>
 
                     <div class="form-group">
@@ -437,28 +522,28 @@
                         <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary btn-large" style="width: 100%;">Send Message</button>
+                    <button type="submit" class="btn-primary btn-large" id="contact-submit-btn"
+                        style="width: 100%;">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container footer-content">
-            <div class="footer-logo" style="margin-bottom: var(--space-4);">
-                <img src="images/logo-official.png" alt="Kayden Medical Centre Logo"
-                    style="max-height: 120px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+            <div class="footer-logo">
+                <img src="images/logo-official.png" alt="Kayden Medical Centre Logo" class="footer-logo-img"
+                    loading="lazy" width="240" height="80">
             </div>
             <p class="footer-tagline">Always Open. Always Here for You.</p>
             <p class="footer-copyright">&copy; 2026 Kayden Clinic. All rights reserved.</p>
-            <p class="footer-credit" style="margin-top: var(--space-2); font-size: 0.875rem; opacity: 0.8;">Made by
-                Godknows Mugaduyi</p>
+            <p class="footer-credit">Made by Godknows Mugaduyi</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/263712469830" class="whatsapp-float" target="_blank" rel="noopener"
+    <a href="https://wa.me/263712469830" class="whatsapp-float" id="whatsappFloat" target="_blank" rel="noopener"
         aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -469,6 +554,14 @@
                 fill="currentColor" />
         </svg>
     </a>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

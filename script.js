@@ -1,8 +1,34 @@
 // ============================================
 // KAYDEN CLINIC - INTERACTIVE FUNCTIONALITY
+// Optimized for Performance & UX
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    // ============================================
+    // PAGE LOADER - Smooth Entry
+    // ============================================
+    const pageLoader = document.getElementById('pageLoader');
+    if (pageLoader) {
+        // Hide loader once everything is ready
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+                // Remove loader from DOM after transition
+                setTimeout(() => {
+                    pageLoader.remove();
+                }, 500);
+            }, 400);
+        });
+
+        // Fallback: force-hide if load event already fired
+        if (document.readyState === 'complete') {
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+                setTimeout(() => pageLoader.remove(), 500);
+            }, 300);
+        }
+    }
 
     // ============================================
     // MOBILE MENU TOGGLE
@@ -12,8 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (mobileMenuBtn && mobileNav) {
         mobileMenuBtn.addEventListener('click', function () {
-            this.classList.toggle('active');
+            const isActive = this.classList.toggle('active');
             mobileNav.classList.toggle('active');
+
+            // Update ARIA state
+            this.setAttribute('aria-expanded', isActive.toString());
+
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
         // Close mobile menu when a link is clicked
@@ -22,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
             link.addEventListener('click', function () {
                 mobileMenuBtn.classList.remove('active');
                 mobileNav.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
             });
         });
     }
@@ -30,16 +64,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // STICKY HEADER SHADOW ON SCROLL
     // ============================================
     const header = document.getElementById('header');
+    let lastScrollY = 0;
+    let ticking = false;
 
     function handleScroll() {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        lastScrollY = window.scrollY;
+
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (lastScrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // ============================================
     // SMOOTH SCROLL FOR ANCHOR LINKS
@@ -50,20 +94,22 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
 
-            // Only handle internal anchors
             if (href !== '#' && href.startsWith('#')) {
                 const target = document.querySelector(href);
 
                 if (target) {
                     e.preventDefault();
 
-                    const headerHeight = header.offsetHeight;
+                    const headerHeight = header ? header.offsetHeight : 0;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
+
+                    // Update URL hash without scrolling
+                    history.pushState(null, '', href);
                 }
             }
         });
@@ -72,164 +118,142 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================
     // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
     // ============================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                // Optionally unobserve after animation to improve performance
-                // observer.unobserve(entry.target);
-            }
+    if (!prefersReducedMotion) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Unobserve for performance
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.classList.add('reveal');
+            card.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(card);
         });
-    }, observerOptions);
 
-    // Observe service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, index) => {
-        card.classList.add('reveal');
-        card.style.transitionDelay = `${index * 100}ms`;
-        observer.observe(card);
-    });
+        // Observe contact items
+        const contactItems = document.querySelectorAll('.contact-item');
+        contactItems.forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.transitionDelay = `${index * 120}ms`;
+            observer.observe(item);
+        });
 
-    // Observe contact items
-    const contactItems = document.querySelectorAll('.contact-item');
-    contactItems.forEach((item, index) => {
-        item.classList.add('reveal');
-        item.style.transitionDelay = `${index * 150}ms`;
-        observer.observe(item);
-    });
+        // Observe contact cards
+        const contactCards = document.querySelectorAll('.contact-card');
+        contactCards.forEach((card, index) => {
+            card.classList.add('reveal');
+            card.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(card);
+        });
 
-    // ============================================
-    // WHATSAPP BUTTON PULSE ANIMATION ON LOAD
-    // ============================================
-    const whatsappBtn = document.querySelector('.whatsapp-float');
+        // Observe contact form
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.classList.add('reveal');
+            observer.observe(contactForm);
+        }
 
-    if (whatsappBtn) {
-        // Add entrance animation
-        setTimeout(() => {
-            whatsappBtn.style.opacity = '0';
-            whatsappBtn.style.transform = 'scale(0)';
-            whatsappBtn.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-
-            setTimeout(() => {
-                whatsappBtn.style.opacity = '1';
-                whatsappBtn.style.transform = 'scale(1)';
-            }, 100);
-        }, 1000);
-
-        // Periodic pulse to draw attention
-        setInterval(() => {
-            whatsappBtn.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                whatsappBtn.style.transform = 'scale(1)';
-            }, 200);
-        }, 5000);
+        // Observe gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.transitionDelay = `${index * 80}ms`;
+            observer.observe(item);
+        });
     }
 
     // ============================================
-    // EMERGENCY BADGE ANIMATION
+    // WHATSAPP BUTTON - SMOOTH ENTRANCE
     // ============================================
-    const heroBadge = document.querySelector('.hero-badge');
+    const whatsappBtn = document.getElementById('whatsappFloat');
 
-    if (heroBadge) {
-        // Add fade-in animation
-        heroBadge.style.opacity = '0';
-        heroBadge.style.transform = 'translateY(-20px)';
-
+    if (whatsappBtn) {
+        // Delayed entrance for better UX
         setTimeout(() => {
-            heroBadge.style.transition = 'all 0.6s ease-out';
-            heroBadge.style.opacity = '1';
-            heroBadge.style.transform = 'translateY(0)';
-        }, 300);
+            whatsappBtn.classList.add('visible');
+        }, 2000);
+
+        // Subtle periodic attention pulse (respects reduced motion)
+        if (!prefersReducedMotion) {
+            setInterval(() => {
+                whatsappBtn.style.transition = 'transform 0.3s ease';
+                whatsappBtn.style.transform = 'scale(1.08)';
+                setTimeout(() => {
+                    whatsappBtn.style.transform = 'scale(1)';
+                }, 300);
+            }, 8000);
+        }
+    }
+
+    // ============================================
+    // BACK TO TOP BUTTON
+    // ============================================
+    const backToTopBtn = document.getElementById('backToTop');
+
+    if (backToTopBtn) {
+        // Show/hide based on scroll position
+        function updateBackToTop() {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', updateBackToTop, { passive: true });
+
+        backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 
     // ============================================
     // HERO CONTENT STAGGERED ANIMATION
     // ============================================
-    const heroHeadline = document.querySelector('.hero-headline');
-    const heroSubheadline = document.querySelector('.hero-subheadline');
-    const heroActions = document.querySelector('.hero-actions');
-    const heroImage = document.querySelector('.hero-image');
+    if (!prefersReducedMotion) {
+        const heroHeadline = document.querySelector('.hero-headline');
+        const heroSubheadline = document.querySelector('.hero-subheadline');
+        const heroActions = document.querySelector('.hero-actions');
+        const heroImage = document.querySelector('.hero-image');
+        const heroBadge = document.querySelector('.hero-badge');
 
-    const animateElements = [
-        { element: heroHeadline, delay: 400 },
-        { element: heroSubheadline, delay: 600 },
-        { element: heroActions, delay: 800 },
-        { element: heroImage, delay: 1000 }
-    ];
+        const animateElements = [
+            { element: heroBadge, delay: 200 },
+            { element: heroHeadline, delay: 400 },
+            { element: heroSubheadline, delay: 600 },
+            { element: heroActions, delay: 800 },
+            { element: heroImage, delay: 1000 }
+        ];
 
-    animateElements.forEach(({ element, delay }) => {
-        if (element) {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
+        animateElements.forEach(({ element, delay }) => {
+            if (element) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(25px)';
 
-            setTimeout(() => {
-                element.style.transition = 'all 0.6s ease-out';
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }, delay);
-        }
-    });
-
-    // ============================================
-    // PHONE NUMBER CLICK TRACKING (Analytics Ready)
-    // ============================================
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-
-    phoneLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            console.log('Phone call initiated: ' + this.href);
-            // You can add your analytics tracking here
-            // Example: gtag('event', 'click', { 'event_category': 'call', 'event_label': 'emergency' });
-        });
-    });
-
-    // ============================================
-    // WHATSAPP LINK CLICK TRACKING (Analytics Ready)
-    // ============================================
-    if (whatsappBtn) {
-        whatsappBtn.addEventListener('click', function () {
-            console.log('WhatsApp chat initiated');
-            // You can add your analytics tracking here
-            // Example: gtag('event', 'click', { 'event_category': 'whatsapp', 'event_label': 'floating_button' });
+                setTimeout(() => {
+                    element.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, delay);
+            }
         });
     }
-
-    // ============================================
-    // PERFORMANCE OPTIMIZATION - LAZY LOAD IFRAME
-    // ============================================
-    const mapIframe = document.querySelector('.map-container iframe');
-
-    if (mapIframe) {
-        const mapObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Iframe is already loaded with src, but you can add loading state here
-                    console.log('Map loaded');
-                    mapObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        mapObserver.observe(mapIframe);
-    }
-
-    // ============================================
-    // ACCESSIBILITY - KEYBOARD NAVIGATION
-    // ============================================
-    document.addEventListener('keydown', function (e) {
-        // Allow ESC key to close mobile menu
-        if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('active')) {
-            mobileMenuBtn.classList.remove('active');
-            mobileNav.classList.remove('active');
-        }
-    });
-
-
 
     // ============================================
     // SLIDESHOW FUNCTIONALITY
@@ -239,9 +263,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const dots = document.querySelectorAll('.slideshow-dot');
     let slideshowInterval;
 
-    // Show specific slide
     function showSlide(index) {
-        // Wrap around if index is out of bounds
+        if (slides.length === 0) return;
+
         if (index >= slides.length) {
             currentSlide = 0;
         } else if (index < 0) {
@@ -250,45 +274,42 @@ document.addEventListener('DOMContentLoaded', function () {
             currentSlide = index;
         }
 
-        // Remove active class from all slides and dots
         slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots.length > 0) {
+            dots.forEach(dot => dot.classList.remove('active'));
+        }
 
-        // Add active class to current slide and dot
         slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
+        if (dots.length > 0 && dots[currentSlide]) {
+            dots[currentSlide].classList.add('active');
+        }
     }
 
-    // Change slide (for arrow buttons)
     window.changeSlide = function (direction) {
         showSlide(currentSlide + direction);
         resetSlideshowInterval();
     };
 
-    // Go to specific slide (for dots)
     window.goToSlide = function (index) {
         showSlide(index);
         resetSlideshowInterval();
     };
 
-    // Auto advance slideshow
     function startSlideshow() {
+        if (slides.length <= 1) return;
         slideshowInterval = setInterval(() => {
             showSlide(currentSlide + 1);
-        }, 5000); // Change slide every 5 seconds
+        }, 6000);
     }
 
-    // Reset interval when user interacts
     function resetSlideshowInterval() {
         clearInterval(slideshowInterval);
         startSlideshow();
     }
 
-    // Start the slideshow if slides exist
-    if (slides.length > 0) {
+    if (slides.length > 1) {
         startSlideshow();
 
-        // Pause slideshow on hover
         const slideshowWrapper = document.querySelector('.slideshow-wrapper');
         if (slideshowWrapper) {
             slideshowWrapper.addEventListener('mouseenter', () => {
@@ -301,9 +322,88 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // ============================================
+    // PHONE NUMBER CLICK TRACKING (Analytics Ready)
+    // ============================================
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
 
+    phoneLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            console.log('📞 Phone call initiated: ' + this.href);
+            // Analytics: gtag('event', 'click', { 'event_category': 'call', 'event_label': 'emergency' });
+        });
+    });
 
+    // ============================================
+    // WHATSAPP LINK CLICK TRACKING
+    // ============================================
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            console.log('💬 WhatsApp chat initiated');
+            // Analytics: gtag('event', 'click', { 'event_category': 'whatsapp', 'event_label': 'chat' });
+        });
+    });
 
+    // ============================================
+    // ACCESSIBILITY - KEYBOARD NAVIGATION
+    // ============================================
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('active')) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            mobileMenuBtn.focus();
+        }
+    });
+
+    // ============================================
+    // ACTIVE NAV LINK HIGHLIGHTING
+    // ============================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        function highlightNav() {
+            const scrollPos = window.scrollY + header.offsetHeight + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('href') === '#' + sectionId) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav, { passive: true });
+    }
+
+    // ============================================
+    // PERFORMANCE - LAZY LOAD IFRAME
+    // ============================================
+    const mapIframe = document.querySelector('.map-container iframe');
+
+    if (mapIframe) {
+        const mapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log('🗺️ Map section visible');
+                    mapObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        mapObserver.observe(mapIframe);
+    }
 
     console.log('🏥 Kayden Clinic - Website Loaded Successfully');
 });
@@ -314,10 +414,25 @@ document.addEventListener('DOMContentLoaded', function () {
 function sendEmail(event) {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('message').value;
+    const form = document.getElementById('contactForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const formContainer = document.getElementById('contactFormContainer');
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Basic validation
+    if (!name || !email || !message) {
+        return false;
+    }
+
+    // Visual feedback - disable button
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Opening Email Client...';
+    submitBtn.style.opacity = '0.7';
+    submitBtn.disabled = true;
 
     const subject = encodeURIComponent(`Contact Form: Message from ${name}`);
     const body = encodeURIComponent(
@@ -333,10 +448,32 @@ function sendEmail(event) {
 
     window.location.href = mailtoLink;
 
-    // Reset form after a short delay
+    // Show success message after a short delay
     setTimeout(() => {
-        document.getElementById('contactForm').reset();
-    }, 500);
+        // Replace form with success message
+        const formHTML = formContainer.innerHTML;
+        formContainer.innerHTML = `
+            <div class="form-success">
+                <div class="form-success-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h4>Message Ready!</h4>
+                <p>Your email client should open shortly. If it doesn't, please call us directly at <a href="tel:+263712469830" style="color: var(--color-primary); font-weight: 600;">+263 71 246 9830</a></p>
+            </div>
+        `;
+
+        // Restore form after 6 seconds
+        setTimeout(() => {
+            formContainer.innerHTML = formHTML;
+            // Re-bind the form
+            const newForm = document.getElementById('contactForm');
+            if (newForm) {
+                newForm.reset();
+            }
+        }, 6000);
+    }, 800);
 
     return false;
 }
